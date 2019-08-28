@@ -16,7 +16,7 @@ services:
       - 'x-unix:/tmp/.X11-unix:rw'
     cpuset: "0"
     environment:
-      - DISPLAY=1
+      - DISPLAY=0
     labels:
       io.resin.features.kernel-modules: '1'
       io.resin.features.firmware: '1'
@@ -35,7 +35,7 @@ services:
       - 'x-unix:/tmp/.X11-unix:rw'
     cpuset: "0"
     environment:
-      - DISPLAY=localhost:1
+      - DISPLAY=localhost:0
     labels:
       io.resin.features.kernel-modules: '1'
       io.resin.features.firmware: '1'
@@ -54,7 +54,7 @@ services:
       - 'x-unix:/tmp/.X11-unix:rw'
     cpuset: "0"
     environment:
-      - DISPLAY=localhost:1
+      - DISPLAY=localhost:0
     labels:
       io.resin.features.kernel-modules: '1'
       io.resin.features.firmware: '1'
