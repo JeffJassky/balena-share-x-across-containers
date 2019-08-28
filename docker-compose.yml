@@ -1,0 +1,63 @@
+version: '2.1'
+networks: {}
+volumes:
+  resin-data: {}
+  x-unix: {}
+services:
+  electron:
+    build:
+      context: linux-armv7l-unpacked
+    privileged: true
+    tty: true
+    restart: always
+    network_mode: host
+    volumes:
+      - 'resin-data:/data'
+      - 'x-unix:/tmp/.X11-unix:rw'
+    cpuset: "0"
+    environment:
+      - DISPLAY=2
+    labels:
+      io.resin.features.kernel-modules: '1'
+      io.resin.features.firmware: '1'
+      io.resin.features.dbus: '1'
+      io.resin.features.supervisor-api: '1'
+      io.resin.features.resin-api: '1'
+  node-server:
+    build:
+      context: node-server
+    privileged: true
+    tty: true
+    restart: always
+    network_mode: host
+    volumes:
+      - 'resin-data:/data'
+      - 'x-unix:/tmp/.X11-unix:rw'
+    cpuset: "0"
+    environment:
+      - DISPLAY=localhost:2
+    labels:
+      io.resin.features.kernel-modules: '1'
+      io.resin.features.firmware: '1'
+      io.resin.features.dbus: '1'
+      io.resin.features.supervisor-api: '1'
+      io.resin.features.resin-api: '1'
+  python-server:
+    build:
+      context: python-server
+    privileged: true
+    tty: true
+    restart: always
+    network_mode: host
+    volumes:
+      - 'resin-data:/data'
+      - 'x-unix:/tmp/.X11-unix:rw'
+    cpuset: "0"
+    environment:
+      - DISPLAY=localhost:2
+    labels:
+      io.resin.features.kernel-modules: '1'
+      io.resin.features.firmware: '1'
+      io.resin.features.dbus: '1'
+      io.resin.features.supervisor-api: '1'
+      io.resin.features.resin-api: '1'
