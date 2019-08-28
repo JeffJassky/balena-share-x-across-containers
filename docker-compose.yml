@@ -23,25 +23,6 @@ services:
       io.resin.features.dbus: '1'
       io.resin.features.supervisor-api: '1'
       io.resin.features.resin-api: '1'
-  node-server:
-    build:
-      context: node-server
-    privileged: true
-    tty: true
-    restart: always
-    network_mode: host
-    volumes:
-      - 'resin-data:/data'
-      - 'x-unix:/tmp/.X11-unix:rw'
-    cpuset: "0"
-    environment:
-      - DISPLAY=localhost:0
-    labels:
-      io.resin.features.kernel-modules: '1'
-      io.resin.features.firmware: '1'
-      io.resin.features.dbus: '1'
-      io.resin.features.supervisor-api: '1'
-      io.resin.features.resin-api: '1'
   python-server:
     build:
       context: python-server
